@@ -1,0 +1,204 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_NEXORACINEMA_DIALOG DIALOGEX 0, 0, 547, 367
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Nexora Dolby Cinema - Management Portal"
+FONT 10, "Segoe UI", 400, 0, 0x1
+BEGIN
+    CONTROL         "Admin Dashboard",IDC_BTN_NAV_ADMIN,"Button",BS_OWNERDRAW | WS_TABSTOP,153,258,240,50
+    CONTROL         "Exit",IDC_BTN_NAV_EXIT,"Button",BS_OWNERDRAW | WS_TABSTOP,213,316,120,44
+END
+
+IDD_ADMIN_MOVIE_MGR_DIALOG DIALOGEX 0, 0, 710, 420
+STYLE DS_ABSALIGN | DS_SETFONT | DS_3DLOOK | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_LEFTSCROLLBAR
+CAPTION "Admin - Movie Management"
+FONT 9, "Segoe UI", 0, 0, 0x1
+BEGIN
+    // ── Movie list: inside box top portion (box top=109, height~130) ──────────
+    CONTROL         "",IDC_MOVIE_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,22,113,666,126
+
+    // ── Form row 1: Title + Trailer URL ──────────────────────────────────────
+    LTEXT           "Title:",IDC_STATIC,22,248,28,9
+    EDITTEXT        IDC_TXT_TITLE,54,246,160,13,ES_AUTOHSCROLL
+    LTEXT           "Trailer URL:",IDC_STATIC,222,248,44,9
+    EDITTEXT        IDC_TXT_TRAILER_URL,268,246,220,13,ES_AUTOHSCROLL
+
+    // ── Form row 2: Genre + Poster URL ───────────────────────────────────────
+    LTEXT           "Genre:",IDC_STATIC,22,266,28,9
+    EDITTEXT        IDC_TXT_GENRE,54,264,160,13,ES_AUTOHSCROLL
+    LTEXT           "Poster URL:",IDC_STATIC,222,266,44,9
+    EDITTEXT        IDC_TXT_POSTER_URL,268,264,220,13,ES_AUTOHSCROLL
+
+    // ── Form row 3: Duration + Status + Format ───────────────────────────────
+    LTEXT           "Duration:",IDC_STATIC,22,284,34,9
+    EDITTEXT        IDC_TXT_DURATION,58,282,55,13,ES_AUTOHSCROLL
+    LTEXT           "Status:",IDC_STATIC,118,284,26,9
+    COMBOBOX        IDC_CMB_MOVIE_STATUS,146,282,76,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Format:",IDC_STATIC,228,284,28,9
+    COMBOBOX        IDC_CMB_MOVIE_FORMAT,258,282,48,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+
+    // ── Form row 4: Description (multi-line) ─────────────────────────────────
+    LTEXT           "Description:",IDC_STATIC,22,302,42,9
+    EDITTEXT        IDC_TXT_DESCRIPTION,66,300,422,44,ES_MULTILINE | ES_AUTOVSCROLL | WS_VSCROLL
+
+    // ── Action buttons (right column, inside/below box) ───────────────────────
+    CONTROL         "Add Movie",IDC_BTN_ADD_MOVIE,"Button",BS_OWNERDRAW | WS_TABSTOP,498,248,188,24
+    CONTROL         "Update Movie",IDC_BTN_EDIT_MOVIE,"Button",BS_OWNERDRAW | WS_TABSTOP,498,276,188,24
+    CONTROL         "Delete Movie",IDC_BTN_DELETE_MOVIE,"Button",BS_OWNERDRAW | WS_TABSTOP,498,304,188,24
+    CONTROL         "Manage Showtimes",IDC_BTN_MGR_SHOWTIMES,"Button",BS_OWNERDRAW | WS_TABSTOP,498,332,188,24
+END
+
+IDD_SHOWTIME_MGR_DIALOG DIALOGEX 0, 0, 520, 360
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Admin - Showtime Management"
+FONT 9, "Segoe UI", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SHOWTIME_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,15,15,490,160
+    LTEXT           "Movie:",IDC_STATIC,15,195,40,9
+    COMBOBOX        IDC_CMB_MOVIE,60,193,180,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Hall:",IDC_STATIC,15,215,40,9
+    COMBOBOX        IDC_CMB_HALL,60,213,80,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Format:",IDC_STATIC,155,215,35,9
+    COMBOBOX        IDC_CMB_FORMAT,190,213,40,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Date (YYYY-MM-DD):",IDC_STATIC,15,237,80,9
+    EDITTEXT        IDC_TXT_DATE,95,235,90,14,ES_AUTOHSCROLL
+    LTEXT           "Time (HH:MM):",IDC_STATIC,195,237,60,9
+    EDITTEXT        IDC_TXT_TIME,258,235,80,14,ES_AUTOHSCROLL
+    LTEXT           "Price (LKR):",IDC_STATIC,15,257,50,9
+    EDITTEXT        IDC_TXT_PRICE,65,255,80,14,ES_AUTOHSCROLL
+    CONTROL         "Add Showtime",IDC_BTN_ADD_SHOWTIME,"Button",BS_OWNERDRAW | WS_TABSTOP,20,278,160,40
+    CONTROL         "Delete Showtime",IDC_BTN_DELETE_SHOWTIME,"Button",BS_OWNERDRAW | WS_TABSTOP,195,278,160,40
+END
+
+IDD_ADMIN_LOGIN_DIALOG DIALOGEX 0, 0, 300, 180
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Admin Login - Nexora Dolby Cinema"
+FONT 9, "Segoe UI", 0, 0, 0x1
+BEGIN
+    CTEXT           "Admin Login",IDC_STATIC,20,15,260,14
+    LTEXT           "Email:",IDC_STATIC,20,45,40,10
+    EDITTEXT        IDC_TXT_ADMIN_EMAIL,70,43,200,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,20,70,46,10
+    EDITTEXT        IDC_TXT_ADMIN_PASS,70,68,200,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Login",IDC_BTN_ADMIN_LOGIN,"Button",BS_OWNERDRAW | WS_TABSTOP,95,95,110,36
+    CONTROL         "Cancel",IDCANCEL,"Button",BS_OWNERDRAW | WS_TABSTOP,102,135,96,32
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_NEXORACINEMA_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 520
+    END
+
+    IDD_ADMIN_MOVIE_MGR_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 659
+        BOTTOMMARGIN, 245
+    END
+
+    IDD_SHOWTIME_MGR_DIALOG, DIALOG
+    BEGIN
+    END
+
+    IDD_ADMIN_LOGIN_DIALOG, DIALOG
+    BEGIN
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ADMIN_MOVIE_MGR_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_NEXORACINEMA_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_SHOWTIME_MGR_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
