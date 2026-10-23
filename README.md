@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/nexora_logo.png" alt="Nexora Dolby Cinema Logo" width="300"/>
+  <img src="assets/nexora_main_bg.png" alt="Nexora Dolby Cinema Logo" width="300"/>
   <h1>🍿 Nexora Dolby Cinema</h1>
   <p><i>A Next-Generation Cinema Ticketing & Management System built with C++, MFC, and Supabase.</i></p>
 </div>
