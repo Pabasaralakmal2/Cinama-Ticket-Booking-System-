@@ -28,11 +28,10 @@ protected:
     CComboBox    m_ComboFormat;
     CComboBox    m_ComboStatus;
 
-    // One bitmap per custom button
     enum { BTN_ADD = 0, BTN_UPDATE, BTN_DELETE, BTN_SHOWTIME, BTN_COUNT };
     Gdiplus::Bitmap* m_pBtnBitmap[BTN_COUNT];
     Gdiplus::Bitmap* m_pTheaterBgBitmap;
-    int          m_HoveredBtn;   // stores the control ID of hovered btn, or -1
+    int          m_HoveredBtn;
 
     std::wstring GetExeDir();
     Gdiplus::Bitmap* LoadAssetBitmap(const std::wstring& fileName);
@@ -52,4 +51,3 @@ protected:
     void RefreshMovieList();
     DECLARE_MESSAGE_MAP()
 };
-

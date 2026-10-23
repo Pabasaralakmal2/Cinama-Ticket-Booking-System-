@@ -44,35 +44,29 @@ Nexora is built with a clean, scalable architectural pattern:
 ### Building the Project
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/NexoraDolbyCinema.git
-   cd NexoraDolbyCinema
+   git clone https://github.com/Pabasaralakmal2/Cinama-Ticket-Booking-System-.git
+   cd Cinama-Ticket-Booking-System-
    ```
-2. Configure with CMake:
-   ```bash
-   cmake -B out/build/x64-Debug
-   ```
-3. Build the Application:
-   ```bash
-   cmake --build out/build/x64-Debug
-   ```
-4. Run the executable located in `out/build/x64-Debug/NexoraDolbyCinema.exe`.
+2. Open the Solution in Visual Studio:
+   - Open `CinemaMFC/CinemaMFC.slnx` or `CinemaMFC/CinemaMFC/CinemaMFC.vcxproj` in Visual Studio 2022.
+   - Select configuration **Debug** or **Release** with platform **x64**.
+3. Build & Run:
+   - Press `F5` or `Ctrl+F5` to build and launch the application.
 
-> **Note**: Ensure the `assets/` folder (containing the logo, background images, and hall images) is located in the same directory as your CMakeLists.txt so the build system can automatically copy them to the output folder.
-
-## 📸 Screenshots
-*(Upload your screenshots to your GitHub repo and link them here!)*
-- **Home Screen**: `[Insert image]`
-- **Movie Selection & Trailers**: `[Insert image]`
-- **Seat Booking Grid**: `[Insert image]`
-- **Digital Ticket & QR Code**: `[Insert image]`
+## 📸 Screenshots & Architecture
+<div align="center">
+  <img src="CinemaMFC/CinemaMFC/uml_class_diagram.png" alt="UML Class Diagram" width="850"/>
+  <br/><br/>
+  <img src="assets/bg.png" alt="Nexora Dolby Cinema" width="850"/>
+</div>
 
 ## 👨‍💻 Admin Access
-To access the Admin Dashboard to modify the movie catalog, use the following default credentials (or update them in your Supabase DB):
-- **Email**: `Admin`
+To access the Admin Dashboard to manage movies and showtimes:
+- **Email**: `pabasaralakmal275@gmail.com`
 - **Password**: `2004`
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ---
 <div align="center">

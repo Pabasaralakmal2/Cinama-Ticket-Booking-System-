@@ -57,7 +57,6 @@ BOOL CAdminLoginDlg::OnInitDialog() {
         m_pCancelBtnBitmap = Bitmap::FromFile((basePath + L"assets\\btn_cancel.png").c_str());
     }
 
-    // Configure buttons to eliminate white border lines
     NexoraUI::SetupCustomButton(this, IDC_BTN_ADMIN_LOGIN);
     NexoraUI::SetupCustomButton(this, IDCANCEL);
 
@@ -79,20 +78,17 @@ void CAdminLoginDlg::OnPaint() {
     int W = rect.Width(), H = rect.Height();
     Graphics g(dc.GetSafeHdc());
 
-    // 1) Glass theater background
     NexoraUI::DrawGlassBackground(g, m_pTheaterBgBitmap, W, H, 200);
 
-    // 2) Gold top accent line
     NexoraUI::DrawGoldSeparator(g, 0, 0, W);
 
-    // 3) Subtle gold inner border
     Pen goldTrim(Color(100, 218, 165, 32), 1.0f);
     g.DrawRectangle(&goldTrim, 5.0f, 5.0f, (REAL)(W - 10), (REAL)(H - 10));
 }
 
 HBRUSH CAdminLoginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor) {
     if (nCtlColor == CTLCOLOR_STATIC || nCtlColor == CTLCOLOR_BTN || nCtlColor == CTLCOLOR_DLG) {
-        pDC->SetTextColor(RGB(228, 193, 136)); // Gold text
+        pDC->SetTextColor(RGB(228, 193, 136));
         pDC->SetBkColor(RGB(18, 18, 20));
         pDC->SetBkMode(TRANSPARENT);
         static CBrush s_brush(RGB(18, 18, 20));
@@ -140,7 +136,7 @@ void CAdminLoginDlg::OnBnClickedBtnLogin() {
     m_EditEmail.GetWindowText(email);
     m_EditPassword.GetWindowText(password);
     if (email == _T("pabasaralakmal275@gmail.com") && password == _T("2004")) {
-        EndDialog(IDOK);  
+        EndDialog(IDOK);
     } else {
         AfxMessageBox(_T("Access Denied!\n\nYou do not have admin rights.\nPlease enter valid admin credentials."),
                       MB_OK | MB_ICONERROR);

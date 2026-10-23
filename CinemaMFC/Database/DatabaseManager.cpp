@@ -1,11 +1,10 @@
 #include "DatabaseManager.h"
 #include <iostream>
 
-// Initialize static member
 DatabaseManager* DatabaseManager::instance = nullptr;
 
 DatabaseManager::DatabaseManager() : hEnv(SQL_NULL_HENV), hDbc(SQL_NULL_HDBC), isConnected(false) {
-    // Allocate Environment Handle
+
     if (SQLAllocHandle(SQL_HANDLE_ENV, SQL_NULL_HANDLE, &hEnv) == SQL_SUCCESS) {
         SQLSetEnvAttr(hEnv, SQL_ATTR_ODBC_VERSION, (SQLPOINTER)SQL_OV_ODBC3, 0);
     }
@@ -31,9 +30,8 @@ bool DatabaseManager::connect(const std::string& connectionString) {
     if (SQLAllocHandle(SQL_HANDLE_DBC, hEnv, &hDbc) == SQL_SUCCESS) {
         SQLCHAR retConString[1024];
         SQLSMALLINT retLength;
-        
-        // Connect to Supabase via ODBC
-        SQLRETURN ret = SQLDriverConnectA(hDbc, NULL, 
+
+        SQLRETURN ret = SQLDriverConnectA(hDbc, NULL,
             (SQLCHAR*)connectionString.c_str(), SQL_NTS,
             retConString, 1024, &retLength, SQL_DRIVER_NOPROMPT);
 
@@ -65,7 +63,7 @@ std::vector<Movie> DatabaseManager::getAllMovies() {
     if (SQLAllocHandle(SQL_HANDLE_STMT, hDbc, &hStmt) == SQL_SUCCESS) {
         std::string query = "SELECT movie_id, title, genre, duration_mins, format, status FROM Movies";
         if (SQLExecDirectA(hStmt, (SQLCHAR*)query.c_str(), SQL_NTS) == SQL_SUCCESS) {
-            
+
             char id[40], title[100], genre[50], format[20], status[20];
             int duration;
 
@@ -91,10 +89,9 @@ bool DatabaseManager::addMovie(const Movie& movie) {
     SQLHSTMT hStmt;
 
     if (SQLAllocHandle(SQL_HANDLE_STMT, hDbc, &hStmt) == SQL_SUCCESS) {
-        // Warning: In production, always use parameterized queries to prevent SQL Injection.
-        // Simplified here for the academic assignment example.
-        std::string query = "INSERT INTO Movies (title, genre, duration_mins, format, status) VALUES ('" + 
-            movie.getTitle() + "', '" + movie.getGenre() + "', " + std::to_string(movie.getDuration()) + 
+
+        std::string query = "INSERT INTO Movies (title, genre, duration_mins, format, status) VALUES ('" +
+            movie.getTitle() + "', '" + movie.getGenre() + "', " + std::to_string(movie.getDuration()) +
             ", '" + movie.getFormat() + "', '" + movie.getStatus() + "')";
 
         if (SQLExecDirectA(hStmt, (SQLCHAR*)query.c_str(), SQL_NTS) == SQL_SUCCESS) {

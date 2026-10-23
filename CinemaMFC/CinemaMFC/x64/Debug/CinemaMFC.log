@@ -1,5 +1,4 @@
-﻿  pch.cpp
-  AdminLoginDlg.cpp
+﻿  AdminLoginDlg.cpp
   AdminMovieManagerDlg.cpp
   BookingRepository.cpp
   DatabaseManager.cpp
@@ -10,7 +9,7 @@
   NexoraCinemaDlg.cpp
   ShowtimeManagerDlg.cpp
   Generating Code...
-  CinemaMFC.vcxproj -> C:\Users\USER\OneDrive\Desktop\NexoraCinema_Final\CinemaMFC\x64\Debug\CinemaMFC.exe
+  CinemaMFC.vcxproj -> C:\Users\USER\OneDrive\Desktop\new\CinemaMFC\x64\Debug\CinemaMFC.exe
   Copying assets to output directory...
   10 File(s) copied
   2 File(s) copied

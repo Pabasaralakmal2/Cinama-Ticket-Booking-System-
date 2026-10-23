@@ -73,7 +73,6 @@ BOOL CShowtimeManagerDlg::OnInitDialog() {
         m_pDeleteBtnBitmap = Gdiplus::Bitmap::FromFile((basePath + L"assets\\btn_delete_showtime.png").c_str());
     }
 
-    // Configure buttons to eliminate white borders completely
     NexoraUI::SetupCustomButton(this, IDC_BTN_ADD_SHOWTIME);
     NexoraUI::SetupCustomButton(this, IDC_BTN_DELETE_SHOWTIME);
 
@@ -188,13 +187,10 @@ void CShowtimeManagerDlg::OnPaint() {
     int W = rect.Width(), H = rect.Height();
     Gdiplus::Graphics g(dc.GetSafeHdc());
 
-    // 1) Transparent glass background using theater photo
     NexoraUI::DrawGlassBackground(g, m_pTheaterBgBitmap, W, H, 210);
 
-    // 2) Gold top accent bar
     NexoraUI::DrawGoldSeparator(g, 0, 0, W);
 
-    // 3) Glass panel behind the form area
     if (W > 50 && H > 240) {
         CRect listR;
         if (m_ShowtimeList.GetSafeHwnd()) {
@@ -209,7 +205,7 @@ void CShowtimeManagerDlg::OnPaint() {
 
 HBRUSH CShowtimeManagerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor) {
     if (nCtlColor == CTLCOLOR_STATIC || nCtlColor == CTLCOLOR_BTN || nCtlColor == CTLCOLOR_DLG) {
-        pDC->SetTextColor(RGB(228, 193, 136)); // Nexora gold text
+        pDC->SetTextColor(RGB(228, 193, 136));
         pDC->SetBkColor(RGB(18, 18, 20));
         pDC->SetBkMode(TRANSPARENT);
         static CBrush s_brush(RGB(18, 18, 20));

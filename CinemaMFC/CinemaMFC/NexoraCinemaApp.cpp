@@ -12,7 +12,7 @@ CNexoraCinemaApp::CNexoraCinemaApp() {}
 CNexoraCinemaApp theApp;
 
 BOOL CNexoraCinemaApp::InitInstance() {
-    // Standard MFC initialization
+
     INITCOMMONCONTROLSEX InitCtrls;
     InitCtrls.dwSize = sizeof(InitCtrls);
     InitCtrls.dwICC = ICC_WIN95_CLASSES;
@@ -21,7 +21,6 @@ BOOL CNexoraCinemaApp::InitInstance() {
     CWinApp::InitInstance();
     AfxEnableControlContainer();
 
-    // Set IE browser emulation for WebBrowser control (trailer dialog)
     HKEY hKey;
     if (RegCreateKeyEx(HKEY_CURRENT_USER,
         _T("Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION"),
@@ -31,17 +30,14 @@ BOOL CNexoraCinemaApp::InitInstance() {
         RegCloseKey(hKey);
     }
 
-    // Initialize GDI+ for custom painting
     Gdiplus::GdiplusStartupInput gdiplusInput;
     ULONG_PTR gdiplusToken = 0;
     Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusInput, NULL);
 
-    // Clean expired bookings from local storage
     BookingRepository::ClearOldBookings();
 
     SetRegistryKey(_T("Nexora Dolby Cinema App"));
 
-    // Launch the main dialog
     CNexoraCinemaDlg dlg;
     m_pMainWnd = &dlg;
     dlg.DoModal();

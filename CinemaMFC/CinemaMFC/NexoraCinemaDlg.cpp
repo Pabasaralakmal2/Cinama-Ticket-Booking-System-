@@ -129,10 +129,10 @@ void CNexoraCinemaDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDIS) {
     Graphics g(lpDIS->hDC);
     g.SetSmoothingMode(SmoothingModeAntiAlias);
     g.SetInterpolationMode(InterpolationModeHighQualityBicubic);
-    g.SetPixelOffsetMode(PixelOffsetModeHighQuality); // ← fixes sub-pixel border fringe
+    g.SetPixelOffsetMode(PixelOffsetModeHighQuality);
     g.SetTextRenderingHint(TextRenderingHintAntiAlias);
     CRect r = lpDIS->rcItem;
-    // Inflate by 1px so GDI+ bg fill covers the default button border completely
+
     RectF fullRect((REAL)(r.left - 1), (REAL)(r.top - 1),
                    (REAL)(r.Width() + 2), (REAL)(r.Height() + 2));
     RectF rect((REAL)r.left, (REAL)r.top, (REAL)r.Width(), (REAL)r.Height());
@@ -142,7 +142,7 @@ void CNexoraCinemaDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDIS) {
     if (nIDCtl == IDC_BTN_NAV_ADMIN) {
         if (m_pAdminBtnBitmap && m_pAdminBtnBitmap->GetLastStatus() == Ok) {
             SolidBrush bgBrush(Color(255, 8, 8, 20));
-            g.FillRectangle(&bgBrush, fullRect); // fills over border
+            g.FillRectangle(&bgBrush, fullRect);
 
             RectF drawRect = rect;
             if (state == 1) {
@@ -165,7 +165,7 @@ void CNexoraCinemaDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDIS) {
     } else if (nIDCtl == IDC_BTN_NAV_EXIT) {
         if (m_pExitBtnBitmap && m_pExitBtnBitmap->GetLastStatus() == Ok) {
             SolidBrush bgBrush(Color(255, 8, 8, 20));
-            g.FillRectangle(&bgBrush, fullRect); // fills over border
+            g.FillRectangle(&bgBrush, fullRect);
 
             RectF drawRect = rect;
             if (state == 1) {
@@ -230,7 +230,6 @@ void CNexoraCinemaDlg::OnSize(UINT nType, int cx, int cy) {
     if (!pAdminBtn || !pExitBtn || !pAdminBtn->GetSafeHwnd() || !pExitBtn->GetSafeHwnd())
         return;
 
-    // Scale buttons appropriately based on maximized window resolution
     int adminW = (int)(cx * 0.22f);
     if (adminW < 260) adminW = 260;
     if (adminW > 380) adminW = 380;
@@ -246,7 +245,7 @@ void CNexoraCinemaDlg::OnSize(UINT nType, int cx, int cy) {
     if (exitH > 65) exitH = 65;
 
     int totalButtonsH = adminH + exitH + 16;
-    // Position buttons in the lower third (around 72% from top)
+
     int adminY = (int)(cy * 0.72f);
     if (adminY + totalButtonsH > cy - 20) {
         adminY = cy - totalButtonsH - 25;

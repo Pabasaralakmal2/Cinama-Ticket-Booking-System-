@@ -1,8 +1,5 @@
 #include "pch.h"
 
-// CinemaMFCDlg.cpp : implementation file
-//
-
 #include "pch.h"
 #include "framework.h"
 #include "CinemaMFC.h"
@@ -14,23 +11,18 @@
 #define new DEBUG_NEW
 #endif
 
-
-// CAboutDlg dialog used for App About
-
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* pDX);
 
-// Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -47,12 +39,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
-
-// CCinemaMFCDlg dialog
-
-
-
-CCinemaMFCDlg::CCinemaMFCDlg(CWnd* pParent /*=nullptr*/)
+CCinemaMFCDlg::CCinemaMFCDlg(CWnd* pParent)
 	: CDialogEx(IDD_CINEMAMFC_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -70,16 +57,10 @@ BEGIN_MESSAGE_MAP(CCinemaMFCDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON1, &CCinemaMFCDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
-
-// CCinemaMFCDlg message handlers
-
 BOOL CCinemaMFCDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// Add "About..." menu item to system menu.
-
-	// IDM_ABOUTBOX must be in the system command range.
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -97,14 +78,10 @@ BOOL CCinemaMFCDlg::OnInitDialog()
 		}
 	}
 
-	// Set the icon for this dialog.  The framework does this automatically
-	//  when the application's main window is not a dialog
-	SetIcon(m_hIcon, TRUE);			// Set big icon
-	SetIcon(m_hIcon, FALSE);		// Set small icon
+	SetIcon(m_hIcon, TRUE);
+	SetIcon(m_hIcon, FALSE);
 
-	// TODO: Add extra initialization here
-
-	return TRUE;  // return TRUE  unless you set the focus to a control
+	return TRUE;
 }
 
 void CCinemaMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -120,19 +97,14 @@ void CCinemaMFCDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// If you add a minimize button to your dialog, you will need the code below
-//  to draw the icon.  For MFC applications using the document/view model,
-//  this is automatically done for you by the framework.
-
 void CCinemaMFCDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // device context for painting
+		CPaintDC dc(this);
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Center icon in client rectangle
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -140,7 +112,6 @@ void CCinemaMFCDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// Draw the icon
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -149,8 +120,6 @@ void CCinemaMFCDlg::OnPaint()
 	}
 }
 
-// The system calls this function to obtain the cursor to display while the user drags
-//  the minimized window.
 HCURSOR CCinemaMFCDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -159,18 +128,16 @@ HCURSOR CCinemaMFCDlg::OnQueryDragIcon()
 void CCinemaMFCDlg::OnBnClickedButton1()
 {
 	DatabaseManager* db = DatabaseManager::getInstance();
-	
-	// Example connection string - update credentials as necessary
-	// Using PostgreSQL Unicode ODBC driver
+
 	std::string connStr = "Driver={PostgreSQL Unicode};Server=localhost;Port=5432;Database=postgres;Uid=postgres;Pwd=yourpassword;";
-	
+
 	if (db->connect(connStr)) {
 		std::vector<Movie> movies = db->getAllMovies();
 		CString msg;
 		if (movies.empty()) {
 			msg = _T("Connected successfully! No movies found or tables not created yet.");
 		} else {
-			msg.Format(_T("Connected! Loaded %d movies. First movie: %S"), 
+			msg.Format(_T("Connected! Loaded %d movies. First movie: %S"),
 				(int)movies.size(), movies[0].getTitle().c_str());
 		}
 		AfxMessageBox(msg);
@@ -178,4 +145,3 @@ void CCinemaMFCDlg::OnBnClickedButton1()
 		AfxMessageBox(_T("Failed to connect to the database. Ensure the PostgreSQL ODBC driver is installed and credentials are correct."));
 	}
 }
-

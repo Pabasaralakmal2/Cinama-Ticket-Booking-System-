@@ -17,7 +17,6 @@ BEGIN_MESSAGE_MAP(CAdminMovieManagerDlg, CDialogEx)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_MOVIE_LIST, &CAdminMovieManagerDlg::OnLvnItemchangedMovieList)
 END_MESSAGE_MAP()
 
-// Constructor / Destructor
 CAdminMovieManagerDlg::CAdminMovieManagerDlg(CWnd* pParent)
     : CDialogEx(IDD_ADMIN_MOVIE_MGR_DIALOG, pParent)
     , m_pTheaterBgBitmap(nullptr)
@@ -34,7 +33,6 @@ CAdminMovieManagerDlg::~CAdminMovieManagerDlg()
     delete m_pTheaterBgBitmap;
 }
 
-// Helpers
 std::wstring CAdminMovieManagerDlg::GetExeDir()
 {
     WCHAR exePath[MAX_PATH];
@@ -58,7 +56,6 @@ Gdiplus::Bitmap* CAdminMovieManagerDlg::LoadAssetBitmap(const std::wstring& file
     return bmp;
 }
 
-// Data Exchange
 void CAdminMovieManagerDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialogEx::DoDataExchange(pDX);
@@ -73,7 +70,6 @@ void CAdminMovieManagerDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_CMB_MOVIE_STATUS, m_ComboStatus);
 }
 
-// OnInitDialog
 BOOL CAdminMovieManagerDlg::OnInitDialog()
 {
     CDialogEx::OnInitDialog();
@@ -119,13 +115,12 @@ BOOL CAdminMovieManagerDlg::OnInitDialog()
     TrackMouseEvent(&tme);
 
     RefreshMovieList();
-    CenterWindow();
+    ShowWindow(SW_MAXIMIZE);
     return TRUE;
 }
 
 BOOL CAdminMovieManagerDlg::OnEraseBkgnd(CDC*) { return TRUE; }
 
-// RefreshMovieList
 void CAdminMovieManagerDlg::RefreshMovieList()
 {
     m_MovieList.DeleteAllItems();
@@ -147,7 +142,6 @@ void CAdminMovieManagerDlg::RefreshMovieList()
     }
 }
 
-// Button Handlers
 void CAdminMovieManagerDlg::OnBnClickedBtnAdd()
 {
     CString title, genre, duration, trailerUrl, posterUrl, description;
@@ -231,7 +225,6 @@ void CAdminMovieManagerDlg::OnBnClickedBtnManageShowtimes()
     this->ShowWindow(SW_SHOW);
 }
 
-// List selection -> fill edit fields
 void CAdminMovieManagerDlg::OnLvnItemchangedMovieList(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
@@ -254,8 +247,6 @@ void CAdminMovieManagerDlg::OnLvnItemchangedMovieList(NMHDR *pNMHDR, LRESULT *pR
     *pResult = 0;
 }
 
-// OnPaint: background + glass overlay inside the golden box
-// Box region in bg image: left=3%, top=26%, right=98%, bottom=77%
 void CAdminMovieManagerDlg::OnPaint()
 {
     CPaintDC dc(this);
@@ -269,10 +260,8 @@ void CAdminMovieManagerDlg::OnPaint()
     g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
     g.SetPixelOffsetMode(Gdiplus::PixelOffsetModeHighQuality);
 
-    // 1. Draw full background (cover-fit)
     NexoraUI::DrawTheaterBackground(g, m_pTheaterBgBitmap, W, H);
 
-    // 2. Compute golden box region in client pixels
     Gdiplus::REAL boxLeft   = W * 0.030f;
     Gdiplus::REAL boxTop    = H * 0.260f;
     Gdiplus::REAL boxRight  = W * 0.980f;
@@ -281,19 +270,17 @@ void CAdminMovieManagerDlg::OnPaint()
     Gdiplus::REAL boxH      = boxBottom - boxTop;
     Gdiplus::RectF boxRect(boxLeft, boxTop, boxW, boxH);
 
-    // 3. Dark navy glass fill inside the box
     Gdiplus::SolidBrush glassBrush(Gdiplus::Color(195, 6, 10, 28));
     g.FillRectangle(&glassBrush, boxRect);
 
-    // 4. Gold separator between list and form (~60% of box height)
     Gdiplus::REAL divY = boxTop + boxH * 0.605f;
     NexoraUI::DrawGoldSeparator(g, (int)boxLeft + 4, (int)divY, (int)boxRight - 4);
 
-    // 5. Subtle vignette outside the box
     Gdiplus::SolidBrush vignette(Gdiplus::Color(100, 2, 4, 12));
     g.FillRectangle(&vignette, 0.0f, 0.0f, (Gdiplus::REAL)W, boxTop);
     g.FillRectangle(&vignette, 0.0f, boxBottom, (Gdiplus::REAL)W, (Gdiplus::REAL)H - boxBottom);
 }
+
 
 HBRUSH CAdminMovieManagerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -321,7 +308,6 @@ HBRUSH CAdminMovieManagerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
     return CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
-// Custom button drawing
 void CAdminMovieManagerDlg::DrawCustomButton(LPDRAWITEMSTRUCT lpDIS, int bitmapIndex)
 {
     bool hovered = (lpDIS->CtlID == (UINT)m_HoveredBtn);
@@ -339,7 +325,6 @@ void CAdminMovieManagerDlg::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDIS)
     }
 }
 
-// Mouse hover tracking
 void CAdminMovieManagerDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
     static const int btnIds[] = {
@@ -368,3 +353,4 @@ void CAdminMovieManagerDlg::OnMouseMove(UINT nFlags, CPoint point)
     }
     CDialogEx::OnMouseMove(nFlags, point);
 }
+

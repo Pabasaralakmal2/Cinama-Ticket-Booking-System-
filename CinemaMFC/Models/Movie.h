@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-// ENCAPSULATION DEMONSTRATION
-
 class Movie {
 private:
     std::string movieId;
@@ -16,7 +14,6 @@ public:
     Movie(std::string id, std::string t, std::string g, int d, std::string f, std::string s)
         : movieId(id), title(t), genre(g), durationMins(d), format(f), status(s) {}
 
-    // Getters
     std::string getId() const { return movieId; }
     std::string getTitle() const { return title; }
     std::string getGenre() const { return genre; }
@@ -24,7 +21,6 @@ public:
     std::string getFormat() const { return format; }
     std::string getStatus() const { return status; }
 
-    // Setters with validation logic (Encapsulation)
     void setDuration(int d) {
         if (d > 0) durationMins = d;
     }

@@ -2,23 +2,23 @@
 #include <gdiplus.h>
 using namespace Gdiplus;
 namespace NexoraUI {
-    static const COLORREF CLR_BG_DARK     = RGB(12, 11, 10);    // var(--color-bg)
-    static const COLORREF CLR_BG_PANEL    = RGB(22, 19, 16);    // var(--color-surface)
-    static const COLORREF CLR_GOLD        = RGB(198, 163, 106); // var(--color-gold)
-    static const COLORREF CLR_GOLD_BRIGHT = RGB(228, 193, 136); 
-    static const COLORREF CLR_TEAL        = RGB(61, 120, 180);  // var(--color-open)
-    static const COLORREF CLR_RED         = RGB(182, 69, 69);   // var(--color-alert)
-    static const COLORREF CLR_TEXT        = RGB(243, 236, 223); // var(--color-cream)
-    static const COLORREF CLR_TEXT_DIM    = RGB(163, 152, 136); // var(--color-muted)
+    static const COLORREF CLR_BG_DARK     = RGB(12, 11, 10);
+    static const COLORREF CLR_BG_PANEL    = RGB(22, 19, 16);
+    static const COLORREF CLR_GOLD        = RGB(198, 163, 106);
+    static const COLORREF CLR_GOLD_BRIGHT = RGB(228, 193, 136);
+    static const COLORREF CLR_TEAL        = RGB(61, 120, 180);
+    static const COLORREF CLR_RED         = RGB(182, 69, 69);
+    static const COLORREF CLR_TEXT        = RGB(243, 236, 223);
+    static const COLORREF CLR_TEXT_DIM    = RGB(163, 152, 136);
     static const Color GCLR_BG         = Color(255, 12, 11, 10);
     static const Color GCLR_BG2        = Color(255, 22, 19, 16);
-    static const Color GCLR_PANEL      = Color(255, 33, 28, 23); // var(--color-surface-2)
+    static const Color GCLR_PANEL      = Color(255, 33, 28, 23);
     static const Color GCLR_GOLD       = Color(255, 198, 163, 106);
     static const Color GCLR_GOLD_DIM   = Color(180, 198, 163, 106);
     static const Color GCLR_TEAL       = Color(255, 61, 120, 180);
     static const Color GCLR_RED        = Color(255, 182, 69, 69);
     static const Color GCLR_WHITE      = Color(255, 243, 236, 223);
-    static const Color GCLR_GLASS      = Color(60, 255, 255, 255);   
+    static const Color GCLR_GLASS      = Color(60, 255, 255, 255);
     static const Color GCLR_TRANSPARENT = Color(0, 0, 0, 0);
     inline void DrawBackground(Graphics& g, int W, int H) {
         SolidBrush bgBrush(GCLR_BG);
@@ -100,11 +100,9 @@ namespace NexoraUI {
     inline void DrawGlassBackground(Graphics& g, Bitmap* pBg, int W, int H, BYTE tintAlpha = 210) {
         DrawTheaterBackground(g, pBg, W, H);
 
-        // Glassmorphism translucent dark tint
         SolidBrush glassBrush(Color(tintAlpha, 14, 13, 18));
         g.FillRectangle(&glassBrush, 0, 0, W, H);
 
-        // Subtle frosted glass top gloss
         LinearGradientBrush glossBrush(
             PointF(0, 0), PointF(0, (REAL)min(H, 180)),
             Color(35, 255, 255, 255),
@@ -137,15 +135,15 @@ namespace NexoraUI {
     inline void DrawPrimaryButton(Graphics& g, RectF rect, const WCHAR* text, int state = 0) {
         g.SetSmoothingMode(SmoothingModeAntiAlias);
         Color topColor, bottomColor, glowColor;
-        if (state == 2) { 
+        if (state == 2) {
             topColor   = Color(255, 30, 130, 110);
             bottomColor= Color(255, 0,  90,  75);
             glowColor  = Color(0, 0, 0, 0);
-        } else if (state == 1) { 
+        } else if (state == 1) {
             topColor   = Color(255, 25, 195, 170);
             bottomColor= Color(255, 0,  160, 140);
             glowColor  = Color(80, 0, 200, 180);
-        } else { 
+        } else {
             topColor   = Color(255, 15, 155, 135);
             bottomColor= Color(255, 0,  120, 100);
             glowColor  = Color(40, 0, 180, 160);
@@ -274,10 +272,10 @@ namespace NexoraUI {
 
     inline LRESULT CALLBACK CleanButtonSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData) {
         if (uMsg == WM_NCPAINT) {
-            return 0; // Strip any 3D white/gray border drawn by User32/UxTheme
+            return 0;
         }
         if (uMsg == WM_ERASEBKGND) {
-            return TRUE; // Do not allow default Windows background erase
+            return TRUE;
         }
         return DefSubclassProc(hWnd, uMsg, wParam, lParam);
     }
