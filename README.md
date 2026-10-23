@@ -57,7 +57,7 @@ Nexora is built with a clean, scalable architectural pattern:
 <div align="center">
   <img src="CinemaMFC/CinemaMFC/uml_class_diagram.png" alt="UML Class Diagram" width="850"/>
   <br/><br/>
-  <img src="assets/bg.png" alt="Nexora Dolby Cinema" width="850"/>
+  <img src="assets/nexora_main_bg.png" alt="Nexora Dolby Cinema" width="850"/>
 </div>
 
 ## 👨‍💻 Admin Access
